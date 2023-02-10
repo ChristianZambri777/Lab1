@@ -6,7 +6,7 @@ public class CameraMovement : MonoBehaviour
 {
 
     public Transform cam;
-    public float speed = 0.01f;
+    public float speed = 0.1f;
     [SerializeField] GameObject player;
 
     // Start is called before the first frame update
@@ -19,6 +19,6 @@ public class CameraMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        cam.position += new Vector3(Input.GetAxis("Horizontal") * speed, 0, Input.GetAxis("Vertical") * speed);
+        cam.position = new Vector3(player.transform.position.x, cam.position.y, player.transform.position.z - 14);
     }
 }

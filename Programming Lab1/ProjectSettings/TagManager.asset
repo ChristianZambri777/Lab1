@@ -3,15 +3,18 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Spider
+  - Wizard
+  - sword
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - sword
   - Water
   - UI
-  - 
+  - player
   - 
   - 
   - 
