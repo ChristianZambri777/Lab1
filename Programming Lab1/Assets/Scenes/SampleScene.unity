@@ -863,6 +863,7 @@ MonoBehaviour:
   speed: 2
   maxHP: 0
   player: {fileID: 949153256}
+  enemyHealth: 10
 --- !u!1001 &421264425
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1330,6 +1331,7 @@ MonoBehaviour:
   speed: 0.5
   maxHP: 0
   player: {fileID: 949153256}
+  enemyHealth: 10
 --- !u!1001 &589214268
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2495,6 +2497,7 @@ MonoBehaviour:
   speed: 2
   maxHP: 0
   player: {fileID: 949153256}
+  enemyHealth: 10
 --- !u!1 &1146868172 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: de3de9b5aee02144d9f05ea48abc3fa0, type: 3}
@@ -3762,11 +3765,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 28944b7358231954d889915770a9604a, type: 3}
       propertyPath: m_LocalScale.x
-      value: 577.64
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 28944b7358231954d889915770a9604a, type: 3}
       propertyPath: m_LocalScale.y
-      value: 577.6
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 28944b7358231954d889915770a9604a, type: 3}
       propertyPath: m_LocalPosition.x

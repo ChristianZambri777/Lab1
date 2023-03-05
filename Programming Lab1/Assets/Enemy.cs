@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    
 
    // [SerializeField] private string enemyName;
     [SerializeField] private float speed;
@@ -11,6 +12,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float maxHP;
 
     [SerializeField] private Transform player;
+
+   public int enemyHealth = (int)Enum.ENEMY_HEALTH;
 
     void Start()
     {
@@ -21,6 +24,11 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         
+        if(enemyHealth <=0)
+        {
+            Destroy(gameObject);
+        }
+
     }
 
     private void FixedUpdate()
@@ -33,11 +41,23 @@ public class Enemy : MonoBehaviour
         
         if(collision.gameObject.tag == "sword")
         {
-
-            Destroy(gameObject);
+            enemyHealth--;
+           
         }
 
 
+
+
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        enemyHealth--;
+    }
+
+    public int returnEnemyHP()
+    {
+        return enemyHealth;
     }
     
 

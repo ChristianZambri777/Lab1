@@ -6,6 +6,6 @@ public class PlayerData : Singleton<PlayerData>
 {
     public int ReturnHealth()
     {
-        return 10;
+        return (int)Enum.PLAYER_HEALTH;
     }
 }
