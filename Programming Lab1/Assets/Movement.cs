@@ -8,8 +8,10 @@ public class Movement : MonoBehaviour
     public Rigidbody body;
     public Transform trans;
     public float rotationSpeed = 2f;
-   // bool shift = false;
-
+    // bool shift = false;
+    public float timeSent = 5f;
+    public int amount = 10;
+    //public int setVal = 20;
     public Vector3 move;
 
    // Animator animations;
@@ -19,7 +21,11 @@ public class Movement : MonoBehaviour
         body = gameObject.GetComponent<Rigidbody>();
         trans = gameObject.GetComponent<Transform>();
         //animations = GetComponent<Animator>();
-        
+        StartCoroutine(myMethod());
+
+        Debug.Log($"Getting the value using a property is {GetSetValue}");
+        GetSetValue = 20;
+        Debug.Log($"After setting value using property, the value is {GetSetValue}");
     }
 
 
@@ -31,25 +37,19 @@ public class Movement : MonoBehaviour
         move.z = Input.GetAxisRaw("Vertical");
 
 
+      
+    }
 
-        /*
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            animations.Play("CharacterArmature|Dagger_Attack");
-           
-        }
 
-        if(Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            speed = 8f;
-            shift = true;
-        }
-        else
-        {
-            shift = false;
-        }
+    private IEnumerator myMethod()
+    {
 
-        */
+        Debug.Log("Testing coroutine, this message should print now");
+
+        yield return new WaitForSeconds(timeSent);
+
+        Debug.Log("This mesaage should print after 5 seconds");
+       
     }
 
     private void FixedUpdate()
@@ -62,6 +62,16 @@ public class Movement : MonoBehaviour
        
         Quaternion face = Quaternion.LookRotation(move ,Vector3.up);
         trans.rotation = Quaternion.RotateTowards(trans.rotation, face, rotationSpeed * Time.deltaTime);
+        }
+    }
+
+
+    public int GetSetValue
+    {
+        get { return amount; }
+        set
+        {
+            amount = value;
         }
     }
 }
