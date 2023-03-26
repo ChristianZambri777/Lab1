@@ -9,10 +9,15 @@ public class FileDataHandler : MonoBehaviour
     private string dataDirPath = "";
     private string dataFileName = "";
 
-    public FileDataHandler(string dataDirPath, string dataFileName)
+    private bool useEncyption = false;
+
+    private readonly string encryptionCodeWord = "apple";
+
+    public FileDataHandler(string dataDirPath, string dataFileName, bool useEncryption)
     {
         this.dataDirPath = dataDirPath;
         this.dataFileName = dataFileName;
+        this.useEncyption = useEncryption;
     }
 
     public PlayerSaveData Load()
@@ -31,6 +36,12 @@ public class FileDataHandler : MonoBehaviour
                         dataToLoad = reader.ReadToEnd();
                     }
                 }
+
+                if (useEncyption)
+                {
+                    dataToLoad = EncryptDecrypt(dataToLoad);
+                }
+
 
                 loadedData = JsonUtility.FromJson<PlayerSaveData>(dataToLoad);
             }
@@ -52,6 +63,11 @@ public class FileDataHandler : MonoBehaviour
 
             string dataToStore = JsonUtility.ToJson(data, true);
 
+            if(useEncyption)
+            {
+                dataToStore = EncryptDecrypt(dataToStore);
+            }
+
             using (FileStream stream = new FileStream(fullPath, FileMode.Create))
             {
                 using (StreamWriter writer = new StreamWriter(stream))
@@ -65,5 +81,16 @@ public class FileDataHandler : MonoBehaviour
         {
             Debug.LogError("File issue");
         }
+    }
+
+    private string EncryptDecrypt (string data)
+    {
+        string modifiedData = "";
+        for(int i = 0; i < data.Length; i++)
+        {
+            modifiedData += (char)(data[i] ^ encryptionCodeWord[i % encryptionCodeWord.Length]);
+        }
+
+        return modifiedData;
     }
 }

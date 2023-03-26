@@ -8,6 +8,7 @@ public class DataManager : MonoBehaviour
 {
     [Header("File Storage Config")]
     [SerializeField] private string fileName;
+    [SerializeField] bool useEncryption;
 
 
     private PlayerSaveData data;
@@ -30,7 +31,7 @@ public class DataManager : MonoBehaviour
 
     private void Start()
     {
-        dataHandler = new FileDataHandler(Application.persistentDataPath, fileName); 
+        dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption); 
         dataPersistencesObjects = FindAllDataPersistenceObjects();
         LoadGame();
     }
