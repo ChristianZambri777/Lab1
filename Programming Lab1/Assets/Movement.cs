@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Movement : MonoBehaviour
+public class Movement : MonoBehaviour, IDataPersistence
 {
     [SerializeField] public float speed = 5f;
     public Rigidbody body;
@@ -13,6 +13,8 @@ public class Movement : MonoBehaviour
     public int amount = 10;
     //public int setVal = 20;
     public Vector3 move;
+    public int health = 10;
+    public int deaths = 2;
 
    // Animator animations;
 
@@ -73,6 +75,18 @@ public class Movement : MonoBehaviour
         {
             amount = value;
         }
+    }
+
+    public void LoadData(PlayerSaveData data)
+    {
+        this.health = data.health;
+        transform.position = data.position;
+    }
+
+    public void SaveData(ref PlayerSaveData data)
+    {
+        data.health = this.health;
+        data.position = transform.position;
     }
 }
 
